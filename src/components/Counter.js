@@ -1,22 +1,37 @@
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch, connect } from "react-redux";
+// import { Component } from "react";
+import { counterActions } from "../store/index";
 import { Component } from "react";
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
+  // const incrementHandler = () => {
+  //   dispatch({ type: "increment" });
+  // };
+  // const increaseHandler = () => {
+  //   dispatch({ type: "increase", amount: 5 });
+  // };
+  // const decrementHandler = () => {
+  //   dispatch({ type: "decrement" });
+  // };
+  // const toggleCounterHandler = () => {
+  //   dispatch({ type: "toggle" });
+  // };
+
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 });
+    dispatch(counterActions.increasement(5)); //{type: some unique indentifier, payload: 5}
   };
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
@@ -33,7 +48,7 @@ const Counter = () => {
     </main>
   );
 };
-
+// --------Class Component----------
 // class Counter extends Component {
 //   incrementHandler() {
 //     this.props.increment();
@@ -72,5 +87,5 @@ const Counter = () => {
 // };
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
-
+// -------------
 export default Counter;
